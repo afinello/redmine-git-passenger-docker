@@ -1,6 +1,6 @@
 # Redmine with Git Hosting Docker Image
 
-Redmine Docker Image depending on offical Redmine 3.3.9-passenger Image, including redmine git hosting and some additional themes.
+Redmine Docker Image depending on offical Redmine 3.3.9-passenger Image, including pre-configured redmine-git-hosting and some additional themes.
 
 ## How to use
 
@@ -47,4 +47,30 @@ Redmine Docker Image depending on offical Redmine 3.3.9-passenger Image, includi
 * start your services
     ```
     $ docker-compose up -d
+    ```
+
+## Additional setup
+
+After first launch edit initial Redmine-Git-Hosting plugin settings under Redmine Administration.
+
+* point to redmine_gitolite_admin SSH keys
+
+    ```
+    /home/redmine/.ssh/redmine_gitolite_admin_id_rsa
+    /home/redmine/.ssh/redmine_gitolite_admin_id_rsa.pub
+    ```   
+* specify Gitolite server port: 2222
+* set Temporary dir for lock file and data
+    ```
+    /home/redmine/tmp/redmine_git_hosting
+    ```
+* check Hooks URL and Install Hooks
+* in case of SmartHTTP usage with HTTPS behind the NGINX reverse proxy add an extra parameter to NGINX conf to preserve HTTPS protocol for Git Web
+    ```
+    proxy_set_header   X-Forwarded-Proto $scheme;
+    ```
+  for Apache:
+    ```
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+    RequestHeader set "X-Forwarded-SSL" expr=%{HTTPS}
     ```
