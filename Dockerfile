@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 	libgpg-error-dev \
 	curl \
 	sudo
-	
+
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -51,7 +51,7 @@ RUN cd /home/git && \
 # configure gitolite
 RUN gosu git mkdir -p /home/git/local && \
     gosu git sed -i "s#GIT_CONFIG_KEYS.*#GIT_CONFIG_KEYS  =>  '.*',#" /home/git/.gitolite.rc && \
-	gosu git sed -i -e "s/# LOCAL_CODE.*=>.*\"\$ENV{HOME}\/local\"/LOCAL_CODE => \"\/home\/git\/local\"/" /home/git/.gitolite.rc
+    gosu git sed -i -e "s/# LOCAL_CODE.*=>.*\"\$ENV{HOME}\/local\"/LOCAL_CODE => \"\/home\/git\/local\"/" /home/git/.gitolite.rc
 
 RUN sed -i -e "s/#Port 22/Port 2222/g" /etc/ssh/sshd_config
 #RUN sed -i -e "s/AcceptEnv LANG .*/#AcceptEnv LANG LC_\*/g" /etc/ssh/sshd_config
