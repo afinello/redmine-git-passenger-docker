@@ -6,13 +6,13 @@ Redmine Docker Image depending on offical Redmine 3.3.9-passenger Image, includi
 
 This image exposes 2 ports: 
 
-* 3000 for Redmine web interface 
-* 2222 for Git SSH
+* ```3000``` for Redmine web interface 
+* ```2222``` for Git SSH
 
 and 2 volumes: 
 
-* /usr/src/redmine/files for files storage
-* /home/git/repositories for Git repositories data
+* ```/usr/src/redmine/files``` for files storage
+* ```/home/git/repositories``` for Git repositories data
 
 ## How to use
 
