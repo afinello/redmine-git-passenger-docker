@@ -2,6 +2,18 @@
 
 Redmine Docker Image depending on offical Redmine 3.3.9-passenger Image, including pre-configured redmine-git-hosting and some additional themes.
 
+## Image settings
+
+This image exposes 2 ports: 
+
+* 3000 for Redmine web interface 
+* 2222 for Git SSH
+
+and 2 volumes: 
+
+* /usr/src/redmine/files for files storage
+* /home/git/repositories for Git repositories data
+
 ## How to use
 
 * clone this repository
@@ -10,7 +22,9 @@ Redmine Docker Image depending on offical Redmine 3.3.9-passenger Image, includi
     ```
     $ docker build -t [YOUR-IMAGE-NAME] .
     ```
-* your image is ready for use, the following examples using docker-compose to run redmine
+Your image is ready for use.
+
+The following examples using docker-compose to run redmine
 * create ```docker-compose.yml```
     ```
     version: '3.1'
@@ -24,7 +38,7 @@ Redmine Docker Image depending on offical Redmine 3.3.9-passenger Image, includi
                 - ./home/redmine/files/:/usr/src/redmine/files
                 - ./home/gitolite/repositories/:/home/git/repositories
             ports:
-                - 80:3000
+                - 3000:3000
                 - 2222:2222
             environment:
                 REDMINE_DB_MYSQL: mysql
