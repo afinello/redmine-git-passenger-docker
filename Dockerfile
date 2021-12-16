@@ -66,7 +66,8 @@ COPY ./plugins /usr/src/redmine/plugins
 RUN cd /usr/src/redmine/plugins && \
     git clone https://github.com/jbox-web/redmine_bootstrap_kit.git -b 0.2.5 && \
     git clone https://github.com/jbox-web/redmine_git_hosting.git -b 1.2.3 && \
-    sed -i -e "s/gem 'redcarpet'.*/gem 'redcarpet', '~> 3.3.2'/g" ./redmine_git_hosting/Gemfile
+    sed -i -e "s/gem 'redcarpet'.*/gem 'redcarpet', '~> 3.3.2'/g" ./redmine_git_hosting/Gemfile && \
+    sed -i -e "s/gem 'dalli'.*/gem 'dalli', '= 2.7.11'/g" ./redmine_git_hosting/Gemfile
 #RUN cd /usr/src/redmine/plugins && \ 
 #    echo "gem 'gitlab-grack', git: 'https://github.com/jbox-web/grack.git', require: 'grack', branch: 'fix_rails3'" >> ./redmine_git_hosting/Gemfile
 RUN gosu git mkdir -p /home/git/recycle_bin
