@@ -17,6 +17,7 @@ and 2 volumes:
 ## How to use
 
 * clone this repository
+* put your custom ```configuration.yml``` file to the project root folder if required
 * add additional plugins into ```plugins``` directory
 * build docker image (gems installation included):
     ```
