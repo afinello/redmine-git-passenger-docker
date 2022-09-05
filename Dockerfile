@@ -82,6 +82,9 @@ RUN cp /usr/src/redmine/Gemfile.lock.mysql2 /usr/src/redmine/Gemfile.lock && \
     gosu redmine sh -c "bundle install --without development test" && \
     gosu redmine sh -c "rake generate_secret_token"
 
+# copy config file
+COPY ./configuration.yml /usr/src/redmine/config/configuration.yml
+
 VOLUME /home/git/repositories
 
 COPY ./gitolite-entrypoint.sh /gitolite-entrypoint.sh
